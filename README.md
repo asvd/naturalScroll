@@ -1,2 +1,5 @@
-# naturalScroll
-scroll programmatically and smoothly
+natural scroll
+==============
+
+
+Objects in real life never stop or start moving instantly.
