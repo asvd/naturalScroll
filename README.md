@@ -24,7 +24,7 @@ You can see how `natural scroll` works on the following web-pages
 (click the menu items there and carefully watch how scrolling is
 performed):
 
-- [Home page of intence project](http://asvd.github.io/intence);
+- [Home page of the intence project](http://asvd.github.io/intence);
 
 - [Demo page](http://asvd.github.io/viewport/) for the
   [viewport.js](https://github.com/asvd/viewport) library.
@@ -61,4 +61,5 @@ You can also provide the third argument which is an animation time (in
 msec, 600 by default), but I would not change it.
 
 Have fun!
+
 
