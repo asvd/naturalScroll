@@ -4,24 +4,25 @@ natural scroll
 
 Objects in real life never stop or start moving instantly. Having this
 in mind, `natural scroll` performs the viewport scrolling to the
-desired position if there is a need to perform it programmatically
-(for instance, by selecting a menu item pointing to a section).
+desired position programmatically when there is such a need (for
+instance, by selecting a menu item pointing to a section).
 
 As it name states, `natural scroll` performs the scrolling animation
 smoothly and naturally: it starts and finishes the movement with zero
-speed and acceleration. If then a new scrolling target is specified,
-while the previous scrolling animation has not yet completed, the new
-animation is calculated so that it starts with the speed and
-acceleration of the current frame of the running
+speed and acceleration. If then a running animation has not yet
+completed, but a new scrolling target is specified, `natural scroll`
+calculates the new animation frames so that the starting speed and
+acceleration correspond to the current frame of the running
 animation. Nevertheless, such calculations do not increase the overall
 scrolling time: the animation is pretty fast, so that users will not
 probably notice the magic at all. But good design should not be
-noticed, it will simply make scrolling comfortable and predictable for
-a user.
+noticed: it simply makes scrolling comfortable and predictable for a
+user.
 
 
-You can see how `natural scroll` works on the following web-pages by
-clicking the menu items:
+You can see how `natural scroll` works on the following web-pages
+(click the menu items there and carefully watch how scrolling is
+performed):
 
 - [Home page of intence project](http://asvd.github.io/intence);
 
@@ -56,8 +57,8 @@ naturalScroll.scrollTop(viewport, positionTop);
 naturalScroll.scrollLeft(viewport, positionLeft);
 ```
 
-The methods also support providing a third argument which is an
-animation time (in msec, 600 by default), but I would not change it.
+You can also provide the third argument which is an animation time (in
+msec, 600 by default), but I would not change it.
 
 Have fun!
 
