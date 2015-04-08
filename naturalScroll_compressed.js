@@ -101,6 +101,7 @@ function (exports) {
                         )
                     );
 
+
                     // calculating frames
                     var n2 = fnum * fnum;
                     var n3 = n2 * fnum;
@@ -136,17 +137,17 @@ function (exports) {
                           )
                     ]];
 
-                    while (fnum--) {
+                    while (fIdx = fnum--) {
                         lastframe = F[F[length] - 1];
 
-                        F.push(frame_ = [0, 0, 0, 0, 0, lastframe[5]]);
+                        F.push(frame_ = [0, 0, 0, 0, 0, lastframe[i=5]]);
 
-                        for (i=5;i;) {
+                        for (;i;) {
                             frame_[i-1] = frame_[i] + lastframe[--i];
                         }
                     }
 
-                    fIdx = 0;
+
 
                     interval = interval || setInterval(function(val) {
                         setter_or_top(val = F[fIdx++][0]);
@@ -154,7 +155,7 @@ function (exports) {
                             clearInterval(interval);
                             F = [[val,0,0,0,0, interval = fIdx = 0]];
                         }
-                    }, DELAY);
+                    }, DELAY, fIdx=3);
                 } else if (!interval) {
                     // single argument means update
                     F[fIdx][0] = target_or_elem;
