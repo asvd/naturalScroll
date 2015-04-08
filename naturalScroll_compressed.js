@@ -51,12 +51,14 @@ function (exports) {
      * Calculates the animation and uses the provided setter function
      * to apply the animation frame
      * 
-     * @param {Function} setter to apply the animation frame
+     * @param {Element} el to scroll
+     * @param {String} prop to update ('scrollTop' or 'scrollLeft')
      * @param {Array} F frames and diffs, should be [[0,0,0,0,0,0]]
      * @param {Number} fIdx number of the frame, should be 0
      * @param {Number} interval
      */
-    var gen = function(setter_or_top, F, fIdx, interval) {
+    var gen = function(el_or_top, prop, F, fIdx, interval) {
+        var aprop = prop;
 
         // function behaviour depends on F presence
 
@@ -81,6 +83,10 @@ function (exports) {
                     // two arguments means slide
                     var frame = F[fIdx];
 
+                    if (!interval) {
+                        frame[0] = el_or_top[aprop];
+                    }
+
                     var f0 = frame[0];
                     var f1 = frame[1];
                     var f2 = frame[2];
@@ -100,6 +106,7 @@ function (exports) {
                             )
                         )
                     );
+
 
 
                     // calculating frames
@@ -150,15 +157,12 @@ function (exports) {
 
 
                     interval = interval || setInterval(function(val) {
-                        setter_or_top(val = F[fIdx++][0]);
+                        el_or_top[aprop] = val = F[fIdx++][0];
                         if (fIdx == F[length]) {
                             clearInterval(interval);
                             F = [[val,0,0,0,0, interval = fIdx = 0]];
                         }
                     }, DELAY, fIdx=3);
-                } else if (!interval) {
-                    // single argument means update
-                    F[fIdx][0] = target_or_elem;
                 }
             } else {
                 // scroller
@@ -166,8 +170,8 @@ function (exports) {
                 time = time || 600;
 
                 var animator, i=0;
-                var animatorsList = animators[setter_or_top?0:1];
-                var prop = setter_or_top ? scrollTop : scrollLeft;
+                var animatorsList = animators[el_or_top?0:1];
+                var prop = el_or_top ? scrollTop : scrollLeft;
 
                 for (; i < animatorsList[length];i++) {
                     animator=
@@ -179,23 +183,12 @@ function (exports) {
                     animatorsList.push(animator = {
                         e : target_or_elem,
                         a : gen(
-                            function(val) {
-                                target_or_elem[prop] = val;
-                            },
+                            target_or_elem,
+                            prop,
                             [[0,0,0,0,0,0]],
                             0
                         )
                     });
-
-                    target_or_elem.addEventListener(
-                        scroll,
-                        function() {
-                            animator.a(target_or_elem[prop]);
-                        },
-                        0
-                    );
-                    
-                    animator.a(target_or_elem[prop]);
                 }
 
                 animator.a(time_or_pos, time);
