@@ -18,10 +18,10 @@ You can see how `natural scroll` works on the following web-pages
 (click the menu items there and carefully watch how the page is
 scrolled):
 
-- [Home page of the intence project](http://asvd.github.io/intence);
+- [Home page of the intence project](http://asvd.github.io/intence)
 
 - [Demo page](http://asvd.github.io/viewport/) for the
-  [viewport.js](https://github.com/asvd/viewport) library.
+  [viewport.js](https://github.com/asvd/viewport) library
 
 `natural scroll` is a micro library (only 998 bytes minified!) with no
 dependencies written in vanilla javascript - which means it works
