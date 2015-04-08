@@ -1,6 +1,6 @@
 /**
- * @fileoverview naturalScroll - smoothly scroll
- * @version 0.0.1
+ * @fileoverview naturalScroll - scroll smoothly
+ * @version 0.0.2
  * 
  * @license MIT, see http://github.com/asvd/naturalScroll
  * @copyright 2015 asvd <heliosframework@gmail.com> 
@@ -244,4 +244,3 @@ function (exports) {
     exports[scrollTop] = scroll(true);
     exports[scrollLeft] = scroll(false);
 }));
-
