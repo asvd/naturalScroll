@@ -38,23 +38,24 @@ function (exports) {
             var elFrames, i;
             for (i = 0; i < dirFrames[length]; i++) {
                 if (dirFrames[i][0] == elem) {
-                    elFrames = dirFrames[i][1];
+                    elFrames = dirFrames[i];
                 }
             }
 
    // TODO remove nested array
             if (!elFrames) {
                 elFrames = [
+                    elem,             // element to scroll
                     [[0,0,0,0,0,0]],  // list of frames
                     0,                // frame index
                     0                 // interval
                 ];
 
-                dirFrames.push([elem, elFrames]);
+                dirFrames.push(elFrames);
             }
 
-            var frames = elFrames[0];
-            var idx = elFrames[1];
+            var frames = elFrames[1];
+            var idx = elFrames[2];
             var frame = frames[idx];
 
             frame[0] = elem[prop];
@@ -86,7 +87,7 @@ function (exports) {
             var lastframe;
 
             // these magic formulae came from outer space
-            frames = elFrames[0] = [[
+            frames = elFrames[1] = [[
                 f0,
                 f1,
                 f2,
@@ -113,7 +114,7 @@ function (exports) {
                   )
             ]];
 
-            while (elFrames[1] = fnum--) {
+            while (elFrames[2] = fnum--) {
                 lastframe = frames[frames[length] - 1];
 
                 frames.push(frame = [0, 0, 0, 0, 0, lastframe[i=5]]);
@@ -123,13 +124,13 @@ function (exports) {
                 }
             }
             
-            elFrames[2] = elFrames[2] || setInterval(function(val) {
-                elem[prop] = val = elFrames[0][elFrames[1]++][0];
-                if (elFrames[1] == elFrames[0][length]) {
-                    clearInterval(elFrames[2]);
-                    elFrames[0] = [[val,0,0,0,0, elFrames[2] = elFrames[1] = 0]];
+            elFrames[3] = elFrames[3] || setInterval(function(val) {
+                elem[prop] = val = elFrames[1][elFrames[2]++][0];
+                if (elFrames[2] == elFrames[1][length]) {
+                    clearInterval(elFrames[3]);
+                    elFrames[1] = [[val,0,0,0,0, elFrames[3] = elFrames[2] = 0]];
                 }
-            }, DELAY, elFrames[1]=3);
+            }, DELAY, elFrames[2]=3);
         }
     }
 
