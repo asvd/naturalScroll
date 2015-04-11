@@ -22,7 +22,7 @@ scrolled):
 - [Demo page](http://asvd.github.io/viewport/) for the
   [viewport.js](https://github.com/asvd/viewport) library
 
-`natural scroll` is a micro library (only 735 bytes minified!) with no
+`natural scroll` is a micro library (735 bytes minified!) with no
 dependencies written in vanilla javascript - which means it works
 anywhere.
 
