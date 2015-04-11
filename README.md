@@ -3,15 +3,16 @@ natural scroll
 ==============
 
 Objects in real life never stop or start moving instantly. Having this
-in mind, `natural scroll` performs the viewport scrolling smoothly and
-naturally: it starts and finishes the movement with zero speed and
+in mind, `natural scroll` performs scrolling smoothly and naturally:
+it starts and finishes the movement with zero speed and
 acceleration. If another scrolling target is specified during an
 animation still running, `natural scroll` recalculates the remaining
 animation frames, so that the scrolling continues smoothly and reaches
-the new destination. The animation does not look slower, it just
-*feels better*. The user may not even notice the magic at all, but a
-good design should not be noticed. For him the scrolling becomes
-natural, comfortable and predictable.
+the new destination. The animation does not look slower because of the
+slow-downs and accelerations, it just *feels better*. A user may not
+even notice the magic at all, but a good design should not be
+noticed. For him the scrolling becomes natural, comfortable and
+predictable.
 
 You can see how `natural scroll` works on the following web-pages
 (click the menu items there and carefully watch how the page is
@@ -43,6 +44,7 @@ Invoke the provided methods to scroll a viewport to the desired
 position:
 
 ```js
+// element to scroll, can be document.body
 var viewport = document.getElementById('myViewport');
 var positionTop = 1000;
 var positionLeft = 500;
