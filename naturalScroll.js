@@ -1,6 +1,6 @@
 /**
- * @fileoverview naturalScroll - scroll smoothly
- * @version 0.0.2
+ * @fileoverview naturalScroll - scrolls an viewport naturally
+ * @version 0.1.0
  * 
  * @license MIT, see http://github.com/asvd/naturalScroll
  * @copyright 2015 asvd <heliosframework@gmail.com> 
@@ -15,126 +15,110 @@
     } else {
         factory((root.naturalScroll = {}));
     }
-}(this,
-function (exports) {
-    var DELAY = 20;
-    var TIME = 600;
+}(this, function (exports) {
+    var allAnimations = [
+        [],  // vertical scrolling animations, one for an element
+        []   // horizontal animations
+    ];
 
-    // better compression
-    var Math_ = Math;
-    var length = 'length';
+    // for better compression
+    var scrollTop = 'scrollTop';
+    var scrollLeft = 'scrollLeft';
 
-    var allFrames = [[],[]];
-    
-    // generates vertical scroller if first argument is given,
-    // horizontal otherwise
-    var scroller = function(top) {
-        var prop = top ? 'scrollTop' : 'scrollLeft';
-        var dirFrames = allFrames[top?0:1];
+    // returns scrollTop if argument is given, scrollLeft otherwise
+    var genScroll = function(top) {
+        var prop = top ? scrollTop : scrollLeft;
+        var dirAnimations = allAnimations[top?0:1];
 
+        // exported method
         return function(elem, target, time) {
-            elem = elem.scroller || elem;
-            time = time || TIME;
-            var elFrames, i;
-            for (i = 0; i < dirFrames[length]; i++) {
-                if (dirFrames[i][0] == elem) {
-                    elFrames = dirFrames[i];
-                }
+            elem = elem.scroller || elem;  // needed for intence
+            time = time || 600;
+
+            var animation, tick, i = 0,
+                f0 = elem[prop], f1 = 0, f2 = 0;
+
+            // searching for the element's animation
+            for (;i < dirAnimations.length; i++) {
+                animation = (dirAnimations[i].e == elem) ?
+                    dirAnimations[i] : animation;
             }
 
-   // TODO remove nested array
-            if (!elFrames) {
-                elFrames = [
-                    elem,             // element to scroll
-                    [[0,0,0,0,0,0]],  // list of frames
-                    0,                // frame index
-                    0                 // interval
-                ];
+            if (animation) {
+                f1 = animation.f[1];
+                f2 = animation.f[2];
+            } else {
+                // generating a new animation
 
-                dirFrames.push(elFrames);
+                // animation contains the following data:
+                // .e - element on which the animation is performed
+                // .f - current animation frame
+                // .l - number of remaining animation frames
+                // .i - interval function rendering a single frame
+                dirAnimations.push(animation = {e : elem});
             }
 
-            var frames = elFrames[1];
-            var idx = elFrames[2];
-            var frame = frames[idx];
-
-            frame[0] = elem[prop];
-
-            var f0 = frame[0];
-            var f1 = frame[1];
-            var f2 = frame[2];
-
-            var fnum = Math_.max(
-                5,  // minimal amount of frames
-                // prevent animation run slower than the current one
-                Math_.min(
-                    // normal animation frames number
-                    Math_.floor(time / DELAY),
-                    Math_.abs(
-                        Math_.round(
-                            (target - f0) /
-                                // last animation speed
-                                Math_.abs((f0 - frames[0][0]) / (idx||1))
-                        )
-                    )
-                )
-            );
-
-            // calculating frames
-            var n2 = fnum * fnum;
-            var n3 = n2 * fnum;
+            // 20 msec is the delay between the frames
+            var fnum = animation.l = Math.floor(time/20);
+            var fnum2 = fnum * fnum;
+            var fnum3 = fnum2 * fnum;
             var f0_target = f0-target;
-            var lastframe;
 
-            // these magic formulae came from outer space
-            frames = elFrames[1] = [[
-                f0,
+            // calculating initial frame
+            animation.f = [
+                f0,  // first element is the value
                 f1,
                 f2,
-                - (9 * f2 * n2 + (36 * f1 -9 * f2) * fnum -
+
+                // these magic formulae came from outer space
+                - ( 9 * f2 * fnum2 +
+                    (36 * f1 -9 * f2) * fnum -
                     36 * f1 +
                     60 * f0_target
-                  ) / (n3 - fnum),
-                6 * ( 6 * f2 * n2 + (32 * f1 -6 * f2) * fnum -
-                   32 * f1 +
-                   60 * f0_target
-                 ) / fnum / (
-                     n3 +
-                     2 * n2 -
-                     fnum -
-                     2 
-                 ),
-                - 60 * ( f2 * n2 + (6 * f1 - f2) * fnum -
-                    6 * f1 +
-                    12 * f0_target
-                  ) / fnum / (
-                      n2*n2  +
-                      5 * (n3 + n2-fnum) -
-                      6 
-                  )
-            ]];
+                ) / (fnum3 - fnum),
 
-            while (elFrames[2] = fnum--) {
-                lastframe = frames[frames[length] - 1];
+                6 * ( 6 * f2 * fnum2 +
+                      (32 * f1 -6 * f2) * fnum -
+                      32 * f1 +
+                      60 * f0_target
+                ) / fnum / ( fnum3 + 2 * fnum2 - fnum - 2 ),
+                    
+                - 60 * ( f2 * fnum2 +
+                         (6 * f1 - f2) * fnum -
+                         6 * f1 +
+                         12 * f0_target
+                ) / fnum / (
+                    fnum2*fnum2  + 5*(fnum3 + fnum2-fnum) - 6 
+                )
+            ];
 
-                frames.push(frame = [0, 0, 0, 0, 0, lastframe[i=5]]);
+            if (!animation.i) {
+                // creating the function for the interval,
+                // and invoking it to apply the first frame instantly
+                (tick = function(frame) {
+                    elem[prop] = (frame = animation.f)[0];
 
-                for (;i;) {
-                    frame[i-1] = frame[i] + lastframe[--i];
-                }
-            }
-            
-            elFrames[3] = elFrames[3] || setInterval(function(val) {
-                elem[prop] = val = elFrames[1][elFrames[2]++][0];
-                if (elFrames[2] == elFrames[1][length]) {
-                    clearInterval(elFrames[3]);
-                    elFrames[1] = [[val,0,0,0,0, elFrames[3] = elFrames[2] = 0]];
-                }
-            }, DELAY, elFrames[2]=3);
+                    if (--animation.l) {
+                        // calculating the next frame
+                        // i+1 is the same as i>=0
+                        for (i = 4; i+1;) {
+                            frame[i] += frame[i--+1];
+                        }
+                    } else {
+                        // stopping animation
+                        clearInterval(animation.i);
+                        animation.i = frame[1] = frame[2] = 0;
+                    }
+                })();
+
+                animation.i = setInterval(tick, 20);
+            }  // else animation is already running
         }
     }
 
 
-    exports.scrollTop = scroller(exports.scrollLeft = scroller());
+    exports[scrollTop] = genScroll(
+        exports[scrollLeft] = genScroll()
+    );
 }));
 
