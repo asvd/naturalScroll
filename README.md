@@ -8,10 +8,10 @@ naturally: it starts and finishes the movement with zero speed and
 acceleration. If another scrolling target is specified during an
 animation still running, `natural scroll` recalculates the remaining
 animation frames, so that the scrolling continues smoothly and reaches
-the new destination. The animation does not look slower, it just feels
-*better*. The user may not even notice the magic at all, but a good
-design should not be noticed. For him the scrolling becomes natural,
-comfortable and predictable.
+the new destination. The animation does not look slower, it just
+*feels better*. The user may not even notice the magic at all, but a
+good design should not be noticed. For him the scrolling becomes
+natural, comfortable and predictable.
 
 You can see how `natural scroll` works on the following web-pages
 (click the menu items there and carefully watch how the page is
