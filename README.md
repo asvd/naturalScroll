@@ -9,7 +9,7 @@ acceleration. If another scrolling target is specified during an
 animation still running, `natural scroll` recalculates the remaining
 animation frames, so that the scrolling continues smoothly and reaches
 the new destination. The slowdowns and accelerations do not make the
-animation work slower. The scrolling just *feels better*. A user may
+animation look slower. The scrolling just *feels better*. A user may
 not even notice the magic at all, but a good design should not be
 noticed. For him the scrolling becomes natural, comfortable and
 predictable.
