@@ -23,15 +23,24 @@ scrolled):
 - [Demo page](http://asvd.github.io/viewport/) for the
   [viewport.js](https://github.com/asvd/viewport) library
 
-`natural scroll` is a micro library (735 bytes minified!) with no
-dependencies written in vanilla javascript - which means it works
-anywhere.
+
+`natural scroll` has flexible FPS. Which means that animation frames
+are rendered as frequent as possible. But if a system is too slow (or
+a web-page is too overdesigned), `natural scroll` will simply skip
+some of the frames, preserving the total time of animation. Thus the
+destination scrolling position will be reached on time and users will
+not have to wait any longer. Of course on faster systems the animation
+is more fluent.
+
+`natural scroll` does not have any dependencies, it is written in
+vanilla javascript which means it works anywhere. And it *only costs
+752 bytes* of minified code including UMD-headers!
 
 
 ### Usage
 
 Download the
-[distribution](https://github.com/asvd/naturalScroll/releases/download/v0.1.0/naturalScroll-0.1.0.tar.gz),
+[distribution](https://github.com/asvd/naturalScroll/releases/download/v0.2.0/naturalScroll-0.2.0.tar.gz),
 unpack it and load the `naturalScroll.js` in a preferable way (that is
 an UMD module):
 
