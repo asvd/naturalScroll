@@ -38,9 +38,9 @@ vanilla javascript which means it works anywhere. And it *only costs
 
 ### Usage
 
-Using `natural scroll` is very simple. Download the
+Using of `natural scroll` is very simple. Download the
 [distribution](https://github.com/asvd/naturalScroll/releases/download/v0.2.0/naturalScroll-0.2.0.tar.gz),
-unpack it and load the `naturalScroll.js` in a preferable way:
+unpack it and load the `naturalScroll.js` module in a preferable way:
 
 ```html
 <script src="naturalScroll.js"></script>
