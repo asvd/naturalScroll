@@ -24,12 +24,12 @@ scrolled):
   [viewport.js](https://github.com/asvd/viewport) library
 
 
-`natural scroll` has flexible FPS. Which means animation frames are
-rendered as frequent as possible. But if a system is too slow (or a
-web-page is too overdesigned), `natural scroll` skips some of the
-frames, preserving the total time of animation. Thus the destination
-scrolling position is reached on time and users do not have to wait
-any longer. Of course on faster systems the animation is more fluent.
+`natural scroll` has flexible FPS. Which means if a system is too slow
+(or a web-page is too overdesigned), `natural scroll` skips some of
+the frames, preserving the total time of animation. Therefore the
+destination scrolling position is reached on time and users do not
+have to wait any longer. Of course on faster systems the animation is
+more fluent.
 
 `natural scroll` does not have any dependencies, it is written in
 vanilla javascript which means it works anywhere. And it *only costs
@@ -38,7 +38,7 @@ vanilla javascript which means it works anywhere. And it *only costs
 
 ### Usage
 
-Using of `natural scroll` is very simple. Download the
+Using `natural scroll` is very simple. Download the
 [distribution](https://github.com/asvd/naturalScroll/releases/download/v0.2.0/naturalScroll-0.2.0.tar.gz),
 unpack it and load the `naturalScroll.js` module in a preferable way:
 
