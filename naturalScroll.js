@@ -1,6 +1,6 @@
 /**
- * @fileoverview naturalScroll - scrolls an viewport naturally
- * @version 0.2.0
+ * @fileoverview naturalScroll - scrolls a viewport naturally
+ * @version 0.2.1
  * 
  * @license MIT, see http://github.com/asvd/naturalScroll
  * @copyright 2015 asvd <heliosframework@gmail.com> 
@@ -17,7 +17,7 @@
     }
 }(this, function (exports) {
     var allAnimations = [
-        [],  // vertical scrolling animations, one for an element
+        [],  // vertical scrolling animations, one for a viewport
         []   // horizontal animations
     ];
 
@@ -34,7 +34,7 @@
             time = time || 600;
 
             // all animations for the particular direction
-            var dirAnimations = allAnimations[top?0:1];
+            var dirAnimations = allAnimations[top ? 0 : 1];
             var prop = top ? scrollTop : scrollLeft;
 
             var animation,
@@ -51,7 +51,7 @@
             }
 
             if (animation) {
-                // taking speed and acceleration from running animation
+                // taking speed and accel. from the running animation
                 f1 = animation.f[1];
                 f2 = animation.f[2];
             } else {
@@ -63,7 +63,7 @@
                 dirAnimations.push(animation = {e : elem});
             }
 
-            animation.t = (new Date).getTime()+time;
+            animation.t = (new Date).getTime() + time;
 
             // total number of frames (most will be dropped though)
             var fnum = animation.n = time;
@@ -104,7 +104,7 @@
             // (if the animation is already running, another timeout
             // is launched along with the existing, which is not a
             // problem, since we are already spam with this function
-            // every msec)
+            // as fast as possible)
             (tick = function(i) {
                  while (
                      // frames are not over
@@ -127,7 +127,7 @@
                      setTimeout(tick, 1);
                  } else {
                      // stopping animation
-                     animation.r = animation.f[1] = animation.f[2] = 0;
+                     animation.f[1] = animation.f[2] = 0;
                  }
             })();
         }
