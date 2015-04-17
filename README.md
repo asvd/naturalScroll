@@ -51,7 +51,6 @@ Load the `naturalScroll.js` module in a preferable way:
 <script src="naturalScroll.js"></script>
 ```
 
-
 Invoke the following methods to scroll a viewport to the desired
 position:
 
@@ -70,7 +69,7 @@ msec, 600 by default), but I would not change it.
 
 Have fun!
 
-
+-
 
 follow me on twitter: https://twitter.com/asvd0
 
