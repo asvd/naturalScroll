@@ -1,0 +1,29 @@
+{
+  "name": "natural-scroll",
+  "version": "0.2.1",
+  "homepage": "https://github.com/asvd/naturalScroll",
+  "authors": [
+    "Dmitry Prokashev <heliosframework@gmail.com>"
+  ],
+  "description": "Smoothly scroll to the desired position",
+  "main": "naturalScroll.js",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "keywords": [
+    "scroll",
+    "scrolling",
+    "programmatically",
+    "menu",
+    "navigation"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
