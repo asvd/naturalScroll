@@ -71,5 +71,5 @@ Have fun!
 
 -
 
-follow me on twitter: https://twitter.com/asvd0
+Follow me on twitter: https://twitter.com/asvd0
 
