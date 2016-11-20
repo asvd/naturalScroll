@@ -2,7 +2,7 @@
   "author": "Dmitry Prokashev <heliosframework@gmail.com>",
   "name": "natural-scroll",
   "description": "Smoothly scroll to the desired position",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "keywords": [
     "scroll",
     "scrolling",

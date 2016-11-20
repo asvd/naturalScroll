@@ -1,6 +1,6 @@
 /**
  * @fileoverview naturalScroll - scrolls a viewport naturally
- * @version 0.2.1
+ * @version 0.2.2
  * 
  * @license MIT, see http://github.com/asvd/naturalScroll
  * @copyright 2015 asvd <heliosframework@gmail.com> 
