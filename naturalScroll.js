@@ -124,7 +124,7 @@
 
                  if (animation.n) {
                      // scheduling the next frame
-                     setTimeout(tick, 1);
+                     (window.requestAnimationFrame || setTimeout)(tick, 1);
                  } else {
                      // stopping animation
                      animation.f[1] = animation.f[2] = 0;
