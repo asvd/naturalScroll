@@ -1,0 +1,29 @@
+{
+  "author": "Dmitry Prokashev <heliosframework@gmail.com>",
+  "name": "natural-scroll",
+  "description": "Smoothly scroll to the desired position",
+  "version": "0.2.1",
+  "keywords": [
+    "scroll",
+    "scrolling",
+    "programmatically",
+    "menu",
+    "navigation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/asvd/naturalScroll.git"
+  },
+  "browser":
+    {
+      "fs": false,
+      "child_process": false
+    },
+  "main": "naturalScroll.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
